@@ -23,3 +23,9 @@
   let articles = articlesResponse.data;
   let global = globalResponse.data.attributes;
 </script>
+
+<style>
+body {
+  margin: 0;
+}
+</style>

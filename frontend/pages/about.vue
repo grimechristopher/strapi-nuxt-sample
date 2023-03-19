@@ -19,4 +19,12 @@
   });
   let about = aboutResponse.data.attributes;
 
+  useHead({
+    title: about?.title,
+    meta: [
+      { name: 'description', content: about?.description },
+      { name: 'og:title', content: about?.title },
+      { name: 'og:description', content: about?.description },
+    ],
+  })
 </script>

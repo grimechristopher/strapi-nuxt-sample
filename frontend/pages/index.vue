@@ -2,8 +2,8 @@
 <template>
   <div>
     <Heading
-      :title="global.siteName "
-      :description="global.siteDescription"
+      :title="props.global.siteName"
+      :description="props.global.siteDescription"
     />
     <main>
       <Articles :articles="articles" />
@@ -12,16 +12,16 @@
 </template>
 
 <script setup>
+  const props = defineProps({
+    global: Object
+  })
+
   const { find } = useStrapi4();
   const articlesResponse = await find('articles', {
     populate: 'deep',
 
   });
-  const globalResponse = await find('global', {
-    populate: 'deep',
-  });
   let articles = articlesResponse.data;
-  let global = globalResponse.data.attributes;
 </script>
 
 <style>

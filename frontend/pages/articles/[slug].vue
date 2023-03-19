@@ -32,4 +32,14 @@
   const route = useRoute();
   const matchingArticle = await find("articles", {filters: {slug: route.params.slug}, populate: 'deep'})
   const article = matchingArticle.data[0].attributes;
+
+  useHead({
+    title: article?.title,
+    meta: [
+      { name: 'description', content: article?.description },
+      { name: 'og:title', content: article?.title },
+      { name: 'og:description', content: article?.description },
+      { name: 'og:image', content: getStrapiMedia(article?.cover?.data?.attributes?.url)},
+    ],
+  })
 </script>

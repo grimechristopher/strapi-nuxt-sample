@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <Heading
       :title="category.name"
     />
@@ -11,6 +11,10 @@
 </template>
 
 <script setup>
+  const props = defineProps({
+    global: Object
+  })
+  
   const { find } = useStrapi4()
   const route = useRoute();
 
@@ -19,4 +23,13 @@
 
   const articlesResponse = await find("articles", { filters: {"category": {slug: category.slug}}, populate: 'deep'})
   const articles = articlesResponse.data;
+
+  useHead({
+    title: `${category?.name} | ${props?.global.siteName}`,
+    meta: [
+      { name: 'description', content: category?.description },
+      { name: 'og:title', content: category?.name },
+      { name: 'og:description', content: category?.description },
+    ],
+  })
 </script>

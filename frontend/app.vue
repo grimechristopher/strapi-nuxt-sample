@@ -13,6 +13,7 @@
   });
   let global = globalResponse.data.attributes;
 
+  // add some default SEO realted tags
   useHead({
     title: global?.defaultSeo.metaTitle,
     htmlAttrs: { lang: 'en' },
